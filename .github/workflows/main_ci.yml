@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [18, 'lts/*']
+        node-version: [24, 'lts/maint*']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
       - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2
@@ -38,7 +38,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [18, 'lts/*']
+        node-version: [24, 'lts/maint*']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     services:
       regtest:
@@ -47,10 +47,10 @@ jobs:
           - 8080:8080
     steps:
       - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ pekiskok.node-version }}
         uses: actions/setup-node@eeb10cff27034e7acf239c5d29f62154018672fd # v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ pekiskok.node-version }}
           registry-url: https://registry.npmjs.org/
           cache: 'npm'
       - run: npm ci
